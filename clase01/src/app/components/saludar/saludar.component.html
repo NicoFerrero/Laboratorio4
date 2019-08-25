@@ -1,0 +1,24 @@
+<p>Hola {{ name }}</p>
+<img width="100" height="100" [src]="src" alt="perro" style="margin-bottom:10px" />
+<form *ngIf="enviado; else cargarPersona">
+  <input
+    type="text"
+    name="nombre"
+    id="nombre"
+    [(ngModel)]="persona.nombre"
+    style="margin-bottom:10px"
+  /><br />
+  <input
+    type="text"
+    name="email"
+    id="email"
+    [(ngModel)]="persona.email"
+    style="margin-bottom:10px"
+  /><br />
+  <button (click)="manejadora($event)">Enviar</button>
+</form>
+<ng-template #cargarPersona>
+  <br />Su nombre es {{ nombre }}<br />
+  Su mail es {{ email }}<br />
+  <button (click)="cargar()">Cargar</button>
+</ng-template>

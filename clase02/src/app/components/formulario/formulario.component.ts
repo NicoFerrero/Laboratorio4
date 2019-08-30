@@ -11,7 +11,10 @@ export class FormularioComponent implements OnInit {
   @Output() cargar = new EventEmitter<any>();
   @Input() estado: any;
 
-  persona: Persona = new Persona('', '');
+  persona: any = {
+    nombre: '',
+    email: ''
+  };
 
   constructor() { }
 

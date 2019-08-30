@@ -21,7 +21,7 @@ export class FormularioComponent implements OnInit {
   ngOnInit() {
   }
 
-  enviar(persona: any, event) {
+  enviar(persona: any, event: Event) {
     event.preventDefault();
     this.cargar.emit(new Persona(this.persona.nombre, this.persona.email)); // ESTO SE HACE PARA QUE NO QUEDEN TODOS REFERENCIADOS A LO MISMO, EXTRAE LAS PROPIEDADES Y CREA OTRO OBJETO
     this.persona.nombre = '';

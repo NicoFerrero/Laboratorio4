@@ -18,7 +18,7 @@
   <button (click)="manejadora($event)">Enviar</button>
 </form>
 <ng-template #cargarPersona>
-  <br />Su nombre es {{ nombre }}<br />
-  Su mail es {{ email }}<br />
+  <br />Su nombre es {{ persona.nombre }}<br />
+  Su mail es {{ persona.email }}<br />
   <button (click)="cargar()">Cargar</button>
 </ng-template>

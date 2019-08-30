@@ -13,8 +13,6 @@ export class SaludarComponent implements OnInit {
     nombre: '',
     email: '',
   };
-  email = '';
-  nombre = '';
   enviado = true;
 
   constructor() {}
@@ -23,8 +21,6 @@ export class SaludarComponent implements OnInit {
 
   manejadora(event) {
     event.preventDefault();
-    this.nombre = this.persona.nombre;
-    this.email = this.persona.email;
     this.enviado = !this.enviado;
   }
 

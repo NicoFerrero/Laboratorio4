@@ -1,2 +1,2 @@
-<app-formulario (cargar)="onCargar($event)"></app-formulario>
-<app-mostrar [personas]="personas"></app-mostrar>
+<app-formulario (cargar)="onCargar($event)" [estado]="estado"></app-formulario>
+<app-mostrar [personas]="personas" [estado]="estado" (cambiarEstado)="onCambiarEstado($event)"></app-mostrar>

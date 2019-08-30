@@ -1,3 +1,4 @@
+import { Persona } from './../../clases/persona';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
@@ -8,18 +9,19 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class FormularioComponent implements OnInit {
 
   @Output() cargar = new EventEmitter<any>();
+  @Input() estado: any;
 
-  persona: any = {
-    nombre: '',
-    email: ''
-  };
+  persona: Persona = new Persona('', '');
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  enviar(persona: any) {
-    this.cargar.emit({...persona}); // ESTO SE HACE PARA QUE NO QUEDEN TODOS REFERENCIADOS A LO MISMO, EXTRAE LAS PROPIEDADES Y CREA OTRO OBJETO
+  enviar(persona: any, event) {
+    event.preventDefault();
+    this.cargar.emit(new Persona(this.persona.nombre, this.persona.email)); // ESTO SE HACE PARA QUE NO QUEDEN TODOS REFERENCIADOS A LO MISMO, EXTRAE LAS PROPIEDADES Y CREA OTRO OBJETO
+    this.persona.nombre = '';
+    this.persona.email = '';
   }
 }

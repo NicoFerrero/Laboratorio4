@@ -1,10 +1,14 @@
-<table border="1">
-  <tr>
-    <td>Nombre</td>
-    <td>Email</td>
-  </tr>
-  <tr *ngFor="let persona of personas">
-    <td>{{persona.nombre}}</td>
-    <td>{{persona.email}}</td>
-  </tr>
-</table>
+<div *ngIf="!estado">
+  <table border="1">
+    <tr>
+      <td>Nombre</td>
+      <td>Email</td>
+    </tr>
+    <tr *ngFor="let persona of personas">
+      <td>{{persona.nombre}}</td>
+      <td>{{persona.email}}</td>
+    </tr>
+  </table>
+  <button (click)="toggleEstado(estado)">Cargar nuevo usuario</button>
+</div>
+

@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Persona } from 'src/app/clases/persona';
 
 @Component({
   selector: 'app-mostrar',
@@ -7,10 +8,16 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class MostrarComponent implements OnInit {
 
-  @Input() personas: any;
+  @Input() personas: Persona[];
+  @Input() estado: any;
+  @Output() cambiarEstado = new EventEmitter<any>();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  toggleEstado(estado) {
+    this.cambiarEstado.emit(estado);
   }
 }

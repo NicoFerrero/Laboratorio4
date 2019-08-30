@@ -1,4 +1,4 @@
-<form>
+<form *ngIf="estado">
   <input
     type="text"
     name="nombre"
@@ -13,5 +13,5 @@
     [(ngModel)]="persona.email"
     style="margin-bottom:10px"
   /><br />
-  <button (click)="enviar(persona)">Enviar</button>
+  <button (click)="enviar(persona, $event)">Enviar</button>
 </form>

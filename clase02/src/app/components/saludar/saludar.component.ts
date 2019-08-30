@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Persona } from 'src/app/clases/persona';
 
 @Component({
   selector: 'app-saludar',
@@ -7,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SaludarComponent implements OnInit {
 
-  personas = [];
+  personas: Persona[] = new Array<Persona>();
+  estado = true;
 
   constructor() { }
 
@@ -16,5 +18,10 @@ export class SaludarComponent implements OnInit {
 
   onCargar(persona) {
     this.personas.push(persona);
+    this.estado = !this.estado;
+  }
+
+  onCambiarEstado(estado) {
+    this.estado = !estado;
   }
 }

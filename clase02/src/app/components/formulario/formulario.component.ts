@@ -20,6 +20,6 @@ export class FormularioComponent implements OnInit {
   }
 
   enviar(persona: any) {
-    this.cargar.emit(persona);
+    this.cargar.emit({...persona}); // ESTO SE HACE PARA QUE NO QUEDEN TODOS REFERENCIADOS A LO MISMO, EXTRAE LAS PROPIEDADES Y CREA OTRO OBJETO
   }
 }

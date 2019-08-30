@@ -1,0 +1,17 @@
+<form>
+  <input
+    type="text"
+    name="nombre"
+    id="nombre"
+    [(ngModel)]='persona.nombre'
+    style="margin-bottom:10px"
+  /><br />
+  <input
+    type="text"
+    name="email"
+    id="email"
+    [(ngModel)]="persona.email"
+    style="margin-bottom:10px"
+  /><br />
+  <button (click)="enviar(persona)">Enviar</button>
+</form>

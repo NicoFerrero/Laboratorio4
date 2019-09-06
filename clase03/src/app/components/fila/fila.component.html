@@ -1,0 +1,7 @@
+<td>{{ persona.nombre | titlecase }}</td>
+<td>{{ persona.email }}</td>
+<td>{{ persona.sexo }}</td>
+<td>{{ persona.sueldo | currency: 'ARS' }}</td>
+<td>{{ persona.edad }}</td>
+<td #prueba>{{ persona.licencia | test: prueba }}</td>
+<td>{{ persona.fecha | date: 'short' }}</td>

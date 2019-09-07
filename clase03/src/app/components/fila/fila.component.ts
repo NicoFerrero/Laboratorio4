@@ -7,7 +7,7 @@ import { Persona } from 'src/app/clases/persona';
   styleUrls: ['./fila.component.css'],
 })
 export class FilaComponent implements OnInit {
-  @ViewChild('prueba', { static: true }) prueba: ElementRef;
+  @ViewChild('prueba', { static: false }) prueba: ElementRef<HTMLTableDataCellElement>;
   @Input() persona: Persona;
 
   constructor() {}

@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform, ɵclearResolutionOfComponentResourcesQueue } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'test',

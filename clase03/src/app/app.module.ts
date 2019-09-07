@@ -8,6 +8,8 @@ import { FormularioComponent } from './components/formulario/formulario.componen
 import { SaludarComponent } from './components/saludar/saludar.component';
 import { FilaComponent } from './components/fila/fila.component';
 import { TestPipe } from './pipes/test.pipe';
+import { EdadPipe } from './pipes/edad.pipe';
+import { SexoPipe } from './pipes/sexo.pipe';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { TestPipe } from './pipes/test.pipe';
     FormularioComponent,
     SaludarComponent,
     FilaComponent,
-    TestPipe
+    TestPipe,
+    EdadPipe,
+    SexoPipe
   ],
   imports: [
     BrowserModule,

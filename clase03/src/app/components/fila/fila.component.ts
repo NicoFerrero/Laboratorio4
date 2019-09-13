@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { Persona } from 'src/app/clases/persona';
 
 @Component({
@@ -7,7 +7,6 @@ import { Persona } from 'src/app/clases/persona';
   styleUrls: ['./fila.component.css'],
 })
 export class FilaComponent implements OnInit {
-  @ViewChild('prueba', { static: false }) prueba: ElementRef<HTMLTableDataCellElement>;
   @Input() persona: Persona;
 
   constructor() {}

@@ -1,0 +1,30 @@
+<mat-form-field>
+  <mat-label>Region</mat-label>
+  <mat-select name="region" id="region" (change)='Filtrar($event)' style="margin-bottom: 20px;">
+    <mat-option value="All">--Selecionar--</mat-option>
+    <mat-option value="Europe">Europe</mat-option>
+    <mat-option value="Americas">Americas</mat-option>
+    <mat-option value="Asia">Asia</mat-option>
+    <mat-option value="Oceania">Oceania</mat-option>
+    <mat-option value="Africa">Africa</mat-option>
+    <mat-option value="Polar">Polar</mat-option>
+    <mat-option value="">Sin Filtro</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<table border="1">
+  <thead>
+    <th>Pais</th>
+    <th>Capital</th>
+    <th>Continente</th>
+    <th>Bandera</th>
+  </thead>
+  <tbody>
+    <tr *ngFor='let pais of paisesFiltrados'>
+      <td>{{pais.name}}</td>
+      <td>{{pais.capital}}</td>
+      <td>{{pais.region}}</td>
+      <td><img src="{{pais.flag}}" alt="" height="50px" width="50px"></td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,10 @@
+#controles {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.container {
+  margin: auto;
+  width: 90%;
+}

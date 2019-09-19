@@ -1,0 +1,12 @@
+<div>
+  <table border="1">
+    <tr>
+      <td>Nombre</td>
+      <td>Acciones</td>
+    </tr>
+    <tr *ngFor="let cliente of clientes">
+      <td>{{ cliente.nombre }}</td>
+      <td><button (click)="enviarNombre(cliente.nombre)">Enviar Nombre como parametro</button></td>
+    </tr>
+  </table>
+</div>

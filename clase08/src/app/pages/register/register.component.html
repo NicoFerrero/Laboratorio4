@@ -1,0 +1,11 @@
+<input type="text" name="nombre" id="nombre" [(ngModel)]="usuario.nombre" placeholder="Nombre" />
+<input
+  type="text"
+  name="apellido"
+  id="apellido"
+  [(ngModel)]="usuario.apellido"
+  placeholder="Apellido"
+/>
+<input type="text" name="email" id="email" [(ngModel)]="usuario.email" placeholder="Email" />
+<input type="text" name="pass" id="pass" [(ngModel)]="usuario.pass" placeholder="pass" />
+<button (click)="onRegister()">Regsitrarse</button>

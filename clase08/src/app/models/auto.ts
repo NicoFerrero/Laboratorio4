@@ -3,4 +3,5 @@ export class Auto {
   modelo?: string;
   marca?: string;
   anio?: string;
+  foto?: string;
 }

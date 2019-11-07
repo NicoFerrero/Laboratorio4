@@ -12,11 +12,16 @@ export class HomeComponent implements OnInit {
     marca: '',
     modelo: '',
     anio: '',
+    foto: '',
   };
+
+  autos: Auto[];
 
   constructor(private usuarioService: UsuarioService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.onGetAutos();
+  }
 
   onLogOut() {
     localStorage.removeItem('token');
@@ -25,12 +30,26 @@ export class HomeComponent implements OnInit {
   onGetAutos() {
     this.usuarioService.getAutos().subscribe(data => {
       console.log(data);
+      this.autos = data['rta'];
     });
   }
 
   onRegistro() {
-    this.usuarioService.registroAuto(this.auto).subscribe(data => {
-      console.log(data);
+    let path = 'autos/' + this.auto.modelo + '_' + this.auto.marca;
+    this.usuarioService.traerArchivo(path).subscribe(data => {
+      this.auto.foto = data;
+      this.usuarioService.registroAuto(this.auto).subscribe(data => {
+        console.log(data);
+        this.onGetAutos();
+        this.auto = { marca: '', modelo: '', anio: '', foto: '' };
+      });
+    });
+  }
+
+  subirArchivo(event) {
+    let path = 'autos/' + this.auto.modelo + '_' + this.auto.marca;
+    this.usuarioService.subirArchivo(event.target.files[0], path).then(data => {
+      console.log('exito');
     });
   }
 }

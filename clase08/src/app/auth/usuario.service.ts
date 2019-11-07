@@ -4,6 +4,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { Usuario } from '../models/usuario';
 import { HttpHeaders } from '@angular/common/http';
 import { Auto } from '../models/auto';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,7 @@ import { Auto } from '../models/auto';
 export class UsuarioService {
   private url: string = 'http://127.0.0.1:3003';
   helper = new JwtHelperService();
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private fbStorage: AngularFireStorage) {}
 
   registroUsuario(usuario: Usuario) {
     return this.http.post(`${this.url}/clientes`, { cliente: { ...usuario } });
@@ -54,5 +55,13 @@ export class UsuarioService {
       }),
     };
     return this.http.post(`${this.url}/auto`, { auto: { ...auto } }, httpOptions);
+  }
+
+  subirArchivo(file: any, path: string) {
+    return this.fbStorage.upload(path, file);
+  }
+
+  traerArchivo(path: string) {
+    return this.fbStorage.ref(path).getDownloadURL();
   }
 }

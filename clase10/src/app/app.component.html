@@ -1,0 +1,14 @@
+<input type="text" placeholder="Nombre" name="nombre" [(ngModel)]="entidad.nombre" /> <br />
+<input type="text" placeholder="Apellido" name="apellido" [(ngModel)]="entidad.apellido" /><br />
+<input type="text" placeholder="Correo" name="correo" [(ngModel)]="entidad.correo" /><br />
+<input type="text" placeholder="DNI" name="dni" [(ngModel)]="entidad.dni" /><br />
+<app-captcha (verificar)="verificar($event)"></app-captcha><br />
+<button (click)="entrar()" [disabled]="disabled">Generar QR</button><br />
+<div *ngIf="mostrar">
+  <app-qr [data]="entidad"></app-qr>
+  <label
+    >Nombre: {{ entidad.nombre }} <br />
+    Apellido: {{ entidad.apellido }} <br />Correo: {{ entidad.correo }} <br />
+    D.N.I: {{ entidad.dni }}</label
+  >
+</div>

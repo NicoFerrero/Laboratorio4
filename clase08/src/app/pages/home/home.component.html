@@ -1,17 +1,18 @@
 <h3>BIENVENIDO A LA PAGINA PRINCIPAL</h3>
 
-<input type="text" name="marca" id="marca" [(ngModel)]="auto.marca" placeholder="Marca" />
-<input type="text" name="modelo" id="modelo" [(ngModel)]="auto.modelo" placeholder="Modelo" />
-<input type="text" name="anio" id="anio" [(ngModel)]="auto.anio" placeholder="anio" />
-<input type="file" value="Subir foto" (change)="subirArchivo($event)" /><br />
+<input type="text" name="marca" id="marca" [(ngModel)]="auto.marca" placeholder="Marca" /><br />
+<input type="text" name="modelo" id="modelo" [(ngModel)]="auto.modelo" placeholder="Modelo" /><br />
+<input type="text" name="anio" id="anio" [(ngModel)]="auto.anio" placeholder="anio" /><br />
+<input type="file" value="Subir foto" (change)="subirArchivo($event)" /><br /><br />
 <button (click)="onLogOut()">LogOut</button> <br />
 <button (click)="onGetAutos()">Get Autos</button><br />
-<button (click)="onRegistro()">Registrar Auto</button><br />
-<table border="1">
+<button (click)="onRegistro()">Registrar Auto</button><br /><br />
+<table border="1" id="miTabla">
   <tr>
-    <th>Marca</th>
-    <th>Modelo</th>
-    <th>Anio</th>
+    <td>Marca</td>
+    <td>Modelo</td>
+    <td>Anio</td>
+    <th>Foto</th>
   </tr>
   <tr *ngFor="let item of autos">
     <td>{{ item.marca }}</td>
@@ -20,3 +21,5 @@
     <td *ngIf="item.foto"><img src="{{ item.foto }}" alt="" height="50px" width="50px" /></td>
   </tr>
 </table>
+
+<button (click)="descargarPDF()">Descargar PDF</button>

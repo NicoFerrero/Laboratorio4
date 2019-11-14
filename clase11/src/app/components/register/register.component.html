@@ -1,0 +1,11 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <input type="email" name="email" id="email" placeholder="Email" formControlName="email">
+  <input type="password" name="password" id="password" placeholder="Password" formControlName="password">
+  <select name="tipo" id="tipo" (change)="onSelected($event)" formControlName="tipo">
+    <option value="">--Seleccionar--</option>
+    <option value="alumno">Alumno</option>
+    <option value="profesor">Profesor</option>
+    <option value="administrador">Administrador</option>
+  </select>
+  <button type="submit" [disabled]="!registerForm.valid">Register</button>
+</form>

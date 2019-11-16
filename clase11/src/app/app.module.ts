@@ -7,13 +7,19 @@ import { RegisterComponent } from './components/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { UserService } from './services/user.service';
-import { AuthGuard } from './guards/auth.guard';
-import { AngularFireAuthModule } from '@angular/fire/auth';
 import { MostrarEmailComponent } from './components/mostrar-email/mostrar-email.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -21,7 +27,8 @@ import { MostrarEmailComponent } from './components/mostrar-email/mostrar-email.
     RegisterComponent,
     LoginComponent,
     HomeComponent,
-    MostrarEmailComponent
+    MostrarEmailComponent,
+    NavigationComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,9 +37,14 @@ import { MostrarEmailComponent } from './components/mostrar-email/mostrar-email.
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatButtonModule,
   ],
-  providers: [UserService, AuthGuard],
-  bootstrap: [AppComponent]
+  providers: [UserService, AngularFireAuthGuard],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

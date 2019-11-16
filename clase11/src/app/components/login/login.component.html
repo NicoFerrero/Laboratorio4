@@ -1,5 +1,28 @@
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-  <input type="email" name="email" id="email" placeholder="Email" formControlName="email">
-  <input type="password" name="password" id="password" placeholder="Password" formControlName="password">
-  <button type="submit" [disabled]="!loginForm.valid">Login</button>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="mat-elevation-z8">
+  <mat-form-field class="example-full-width">
+    <input
+      matInput
+      name="email"
+      type="email"
+      id="email"
+      placeholder="Email"
+      formControlName="email"
+    />
+    <mat-error>Campo no valido</mat-error>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input
+      matInput
+      type="password"
+      name="password"
+      id="password"
+      placeholder="Password"
+      formControlName="password"
+    />
+    <mat-error>Campo no valido</mat-error>
+  </mat-form-field>
+
+  <button type="submit" [disabled]="loginForm?.invalid" mat-flat-button color="primary">
+    Login
+  </button>
 </form>

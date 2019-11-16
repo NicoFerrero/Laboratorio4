@@ -1,33 +1,38 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
+  registerForm: FormGroup;
 
-  registerForm = new FormGroup({
-    email: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(16)]),
-    tipo: new FormControl('', [Validators.required]),
-  });
-
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private fb: FormBuilder) {}
 
   ngOnInit() {
+    this.registerForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.maxLength(12), Validators.minLength(6)]],
+      tipo: ['', [Validators.required]],
+    });
   }
 
   onSubmit() {
     //console.warn(this.registerForm.value);
-    let user: User = new User('', this.registerForm.value.email, this.registerForm.value.password, this.registerForm.value.tipo);
+    let user: User = new User(
+      '',
+      this.registerForm.value.email,
+      this.registerForm.value.password,
+      this.registerForm.value.tipo,
+    );
     this.userService.register(user);
   }
 
-  onSelected(e){
-    //console.log(e.target.value);
+  onSelected(e) {
+    console.log(e.value);
   }
 }

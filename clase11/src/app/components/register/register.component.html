@@ -1,11 +1,37 @@
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-  <input type="email" name="email" id="email" placeholder="Email" formControlName="email">
-  <input type="password" name="password" id="password" placeholder="Password" formControlName="password">
-  <select name="tipo" id="tipo" (change)="onSelected($event)" formControlName="tipo">
-    <option value="">--Seleccionar--</option>
-    <option value="alumno">Alumno</option>
-    <option value="profesor">Profesor</option>
-    <option value="administrador">Administrador</option>
-  </select>
-  <button type="submit" [disabled]="!registerForm.valid">Register</button>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="mat-elevation-z8">
+  <mat-form-field class="example-full-width">
+    <input
+      matInput
+      name="email"
+      type="email"
+      id="email"
+      placeholder="Email"
+      formControlName="email"
+    />
+    <mat-error>Campo no valido</mat-error>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input
+      matInput
+      type="password"
+      name="password"
+      id="password"
+      placeholder="Password"
+      formControlName="password"
+    />
+    <mat-error>Campo no valido</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Tipo de Usuario</mat-label>
+    <mat-select name="tipo" id="tipo" (selectionChange)="onSelected($event)" formControlName="tipo">
+      <mat-option value="alumno">Alumno</mat-option>
+      <mat-option value="profesor">Profesor</mat-option>
+      <mat-option value="administrador">Administrador</mat-option>
+    </mat-select>
+    <mat-error>Campo no valido</mat-error>
+  </mat-form-field>
+  <button type="submit" [disabled]="registerForm?.invalid" mat-flat-button color="primary">
+    Register
+  </button>
 </form>

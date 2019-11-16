@@ -1,0 +1,44 @@
+<nav>
+  <div class="logo"><h4>Parcial 2</h4></div>
+  <ul class="nav-links">
+    <li [ngStyle]="{ display: user ? 'none' : 'block' }">
+      <a
+        routerLink="/register"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="toggleMenu()"
+        *ngIf="!user"
+        >Registrarse</a
+      >
+    </li>
+    <li [ngStyle]="{ display: user ? 'none' : 'block' }">
+      <a
+        routerLink="/login"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="toggleMenu()"
+        *ngIf="!user"
+        >Login</a
+      >
+    </li>
+    <li [ngStyle]="{ display: !user ? 'none' : 'block' }">
+      <app-mostrar-email [email]="user?.email"></app-mostrar-email>
+    </li>
+    <li [ngStyle]="{ display: !user ? 'none' : 'block' }">
+      <a
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="toggleMenu()"
+        *ngIf="user"
+        (click)="logOut()"
+        style="cursor: pointer;"
+        >Logout</a
+      >
+    </li>
+  </ul>
+  <div class="burger" (click)="toggleMenu()">
+    <div class="line1"></div>
+    <div class="line2"></div>
+    <div class="line3"></div>
+  </div>
+</nav>

@@ -6,19 +6,23 @@ import { User } from '../models/user';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
   newUser: User;
   usersCollection: AngularFirestoreCollection<User>;
   users: Observable<User[]>;
 
-  constructor(private afs: AngularFirestore, private afAuth: AngularFireAuth, private router: Router) { }
+  constructor(
+    private afs: AngularFirestore,
+    private afAuth: AngularFireAuth,
+    private router: Router,
+  ) {}
 
   login(user: User) {
     this.afAuth.auth
       .signInWithEmailAndPassword(user.email, user.password)
-      .catch(err => console.log("Error: " + err))
+      .catch(err => console.log('Error: ' + err))
       .then(cred => {
         if (cred) {
           this.router.navigate(['/home']);
@@ -28,6 +32,14 @@ export class UserService {
 
   currentUser() {
     return this.afAuth.auth.currentUser;
+  }
+
+  isLoggedIn() {
+    return this.afAuth.authState;
+  }
+
+  logOut() {
+    return this.afAuth.auth.signOut();
   }
 
   getUser(uid: string) {

@@ -1,0 +1,40 @@
+<form [formGroup]="materiaForm" (ngSubmit)="onSubmit()" class="mat-elevation-z8">
+  <mat-form-field class="example-full-width">
+    <input
+      matInput
+      name="materia"
+      type="text"
+      id="materia"
+      placeholder="Materia"
+      formControlName="materia"
+    />
+    <mat-error>Campo no valido</mat-error>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input
+      matInput
+      type="number"
+      name="cuatrimestre"
+      id="cuatrimestre"
+      placeholder="Cuatrimestre"
+      formControlName="cuatrimestre"
+    />
+    <mat-error>Campo no valido</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="number" name="cupo" id="cupo" placeholder="Cupo" formControlName="cupo" />
+    <mat-error>Campo no valido</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Profesores</mat-label>
+    <mat-select name="profesor" id="profesor" formControlName="profesor">
+      <mat-option *ngFor="let profesor of profesores" [value]="profesor.uid">
+        {{ profesor.email }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button type="submit" [disabled]="materiaForm?.invalid" mat-flat-button color="primary">
+    Register
+  </button>
+</form>

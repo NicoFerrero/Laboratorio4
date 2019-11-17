@@ -9,6 +9,8 @@ import {
   redirectLoggedInTo,
   AngularFireAuthGuard,
 } from '@angular/fire/auth-guard';
+import { AltaMateriaComponent } from './components/alta-materia/alta-materia.component';
+import { ContainerTablaComponent } from './components/container-tabla/container-tabla.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToItems = () => redirectLoggedInTo(['home']);
@@ -30,6 +32,24 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+  },
+  {
+    path: 'alta-materia',
+    component: AltaMateriaComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+  },
+  {
+    path: 'materias',
+    component: ContainerTablaComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+  },
+  {
+    path: 'listado-usuarios',
+    component: ContainerTablaComponent,
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin },
   },

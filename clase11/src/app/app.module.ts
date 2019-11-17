@@ -20,6 +20,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTabsModule } from '@angular/material/tabs';
+import { AltaMateriaComponent } from './components/alta-materia/alta-materia.component';
+import { VerMateriasComponent } from './components/ver-materias/ver-materias.component';
+import { ContainerTablaComponent } from './components/container-tabla/container-tabla.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { VerUsuariosComponent } from './components/ver-usuarios/ver-usuarios.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +38,10 @@ import { MatButtonModule } from '@angular/material/button';
     HomeComponent,
     MostrarEmailComponent,
     NavigationComponent,
+    AltaMateriaComponent,
+    VerMateriasComponent,
+    ContainerTablaComponent,
+    VerUsuariosComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +56,11 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     MatSelectModule,
     MatButtonModule,
+    MatTabsModule,
+    MatProgressSpinnerModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
   ],
   providers: [UserService, AngularFireAuthGuard],
   bootstrap: [AppComponent],

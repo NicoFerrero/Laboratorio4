@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
@@ -14,6 +13,7 @@ export class NavigationComponent implements OnInit {
   burger: HTMLDivElement;
   nav: HTMLUListElement;
   navLinks: NodeListOf<HTMLLIElement>;
+  tipo: string;
 
   constructor(private userService: UserService, private router: Router) {}
 
@@ -24,7 +24,13 @@ export class NavigationComponent implements OnInit {
     this.userService.isLoggedIn().subscribe(
       data => {
         this.user = data;
-        console.log(this.user);
+        if (this.user) {
+          this.userService.getUser(this.user.uid).subscribe(usuario => {
+            let aux = usuario as User;
+            this.tipo = aux.tipo;
+            console.log(this.tipo);
+          });
+        }
       },
       err => console.log(err),
     );

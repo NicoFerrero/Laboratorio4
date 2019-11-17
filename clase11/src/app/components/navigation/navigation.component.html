@@ -21,6 +21,39 @@
         >Login</a
       >
     </li>
+    <li [ngStyle]="{ display: !user ? 'none' : 'block' }" *ngIf="tipo == 'administrador'">
+      <a
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="toggleMenu()"
+        style="cursor: pointer;"
+        routerLink="/alta-materia"
+        *ngIf="user"
+        >Alta Materia</a
+      >
+    </li>
+    <li [ngStyle]="{ display: !user ? 'none' : 'block' }" *ngIf="tipo == 'administrador'">
+      <a
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="toggleMenu()"
+        style="cursor: pointer;"
+        routerLink="/materias"
+        *ngIf="user"
+        >Ver Materias</a
+      >
+    </li>
+    <li [ngStyle]="{ display: !user ? 'none' : 'block' }" *ngIf="tipo == 'administrador'">
+      <a
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="toggleMenu()"
+        style="cursor: pointer;"
+        routerLink="/listado-usuarios"
+        *ngIf="user"
+        >Ver Usuarios</a
+      >
+    </li>
     <li [ngStyle]="{ display: !user ? 'none' : 'block' }">
       <app-mostrar-email [email]="user?.email"></app-mostrar-email>
     </li>
@@ -29,9 +62,9 @@
         routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }"
         (click)="toggleMenu()"
-        *ngIf="user"
         (click)="logOut()"
         style="cursor: pointer;"
+        *ngIf="user"
         >Logout</a
       >
     </li>

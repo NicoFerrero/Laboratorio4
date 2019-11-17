@@ -1,5 +1,7 @@
 <div class="container">
-  <ng-container *ngIf="userData?.tipo == 'administrador'">Hola Administrador</ng-container>
+  <ng-container *ngIf="userData?.tipo == 'administrador'">
+    Hola Administrador
+  </ng-container>
   <ng-container *ngIf="userData?.tipo == 'alumno'">Hola Alumno</ng-container>
   <ng-container *ngIf="userData?.tipo == 'profesor'">Hola Profesor</ng-container>
 </div>

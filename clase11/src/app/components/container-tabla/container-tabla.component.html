@@ -1,0 +1,11 @@
+<div class="container" *ngIf="datos">
+  <p>{{ ruta }}</p>
+  <app-ver-materias [ELEMENT_DATA]="datos"></app-ver-materias>
+</div>
+<mat-spinner
+  class="spinner"
+  *ngIf="!datos"
+  color="warn"
+  mode="indeterminate"
+  value="50"
+></mat-spinner>

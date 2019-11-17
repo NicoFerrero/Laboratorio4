@@ -4,6 +4,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { User } from '../models/user';
 import { Observable } from 'rxjs';
+import { Materia } from '../models/materia';
 
 @Injectable({
   providedIn: 'root',
@@ -66,5 +67,22 @@ export class UserService {
       tipo: this.newUser.tipo,
       uid: userCredential.user.uid,
     });
+  }
+
+  AgregarMateria(materia: Materia) {
+    materia.alumnos = 0;
+    this.afs.collection('Materias').add(materia);
+  }
+
+  getProfesores() {
+    return this.afs.collection('Users', ref => ref.where('tipo', '==', 'profesor')).valueChanges();
+  }
+
+  getMaterias() {
+    return this.afs.collection('Materias').valueChanges();
+  }
+
+  getUsers() {
+    return this.afs.collection('Users').valueChanges();
   }
 }

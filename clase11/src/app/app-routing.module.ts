@@ -60,6 +60,12 @@ const routes: Routes = [
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
+  {
+    path: 'inscripciones',
+    component: ContainerTablaComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+  },
   { path: '**', pathMatch: 'full', redirectTo: '/login' },
 ];
 

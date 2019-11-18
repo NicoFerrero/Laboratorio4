@@ -22,7 +22,7 @@
 
     <ng-container matColumnDef="alumnos">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Alumnos</th>
-      <td mat-cell *matCellDef="let element">{{ element.alumnos }}</td>
+      <td #aux mat-cell *matCellDef="let element">{{ element.alumnos | cupoPipe: aux }}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

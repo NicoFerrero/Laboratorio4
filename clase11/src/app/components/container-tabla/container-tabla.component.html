@@ -6,6 +6,9 @@
   <ng-container *ngIf="ruta == 'Usuarios'">
     <app-ver-usuarios [ELEMENT_DATA]="datos"></app-ver-usuarios>
   </ng-container>
+  <ng-container *ngIf="ruta == 'Inscripciones'">
+    <app-ver-inscripciones [ELEMENT_DATA]="datos"></app-ver-inscripciones>
+  </ng-container>
 </div>
 <mat-spinner
   class="spinner"

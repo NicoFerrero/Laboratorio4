@@ -40,6 +40,7 @@ export class InscripcionMateriaComponent implements OnInit {
     };
 
     this.userService.inscripcionMateria(inscripcion);
+    this.materiaForm.reset(this.materiaForm.value);
   }
 
   onSelected(e) {

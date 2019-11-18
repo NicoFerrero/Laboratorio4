@@ -30,6 +30,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { VerUsuariosComponent } from './components/ver-usuarios/ver-usuarios.component';
 import { InscripcionMateriaComponent } from './components/inscripcion-materia/inscripcion-materia.component';
+import { VerInscripcionesComponent } from './components/ver-inscripciones/ver-inscripciones.component';
+import { CupoPipePipe } from './pipes/cupo-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { InscripcionMateriaComponent } from './components/inscripcion-materia/in
     ContainerTablaComponent,
     VerUsuariosComponent,
     InscripcionMateriaComponent,
+    VerInscripcionesComponent,
+    CupoPipePipe,
   ],
   imports: [
     BrowserModule,

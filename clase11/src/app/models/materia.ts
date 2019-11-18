@@ -4,6 +4,7 @@ export class Materia {
   cupos?: number;
   alumnos?: number;
   profesor?: string;
+  uid?: string;
 
   constructor(
     materia?: string,

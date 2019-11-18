@@ -30,6 +30,7 @@ export class RegisterComponent implements OnInit {
       this.registerForm.value.tipo,
     );
     this.userService.register(user);
+    this.registerForm.reset(this.registerForm.value);
   }
 
   onSelected(e) {

@@ -105,16 +105,22 @@ export class UserService {
         materia: inscripcion.materia,
       })
       .then(ref => {
-        this.afs.doc(`Inscripciones/${ref.id}`).set(
-          {
-            uid: ref.id,
-          },
-          { merge: true },
-        );
-
-        this.afs.doc(`Materias/${inscripcion.materia}`).update({
-          alumnos: firebase.firestore.FieldValue.increment(1),
-        });
+        this.afs
+          .doc(`Inscripciones/${ref.id}`)
+          .set(
+            {
+              uid: ref.id,
+            },
+            { merge: true },
+          )
+          .then(() => {
+            this.afs.doc(`Materias/${inscripcion.materia}`).set(
+              {
+                alumnos: firebase.firestore.FieldValue.increment(1),
+              },
+              { merge: true },
+            );
+          });
       });
   }
 

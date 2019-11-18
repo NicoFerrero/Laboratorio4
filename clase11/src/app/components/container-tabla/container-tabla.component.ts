@@ -13,6 +13,7 @@ export class ContainerTablaComponent implements OnInit, OnDestroy {
   suscripcion: Subscription;
   location: Location;
   ruta;
+  alumno: string;
   constructor(private userService: UserService) {}
 
   ngOnInit() {
@@ -25,6 +26,12 @@ export class ContainerTablaComponent implements OnInit, OnDestroy {
       this.ruta = 'Usuarios';
       this.suscripcion = this.userService.getUsers().subscribe(usuarios => {
         this.datos = usuarios;
+      });
+    } else if (location.href.split('/')[3] === 'inscripciones') {
+      this.alumno = this.userService.currentUser().uid;
+      this.ruta = 'Inscripciones';
+      this.suscripcion = this.userService.getInscripciones(this.alumno).subscribe(data => {
+        this.datos = data;
       });
     }
   }

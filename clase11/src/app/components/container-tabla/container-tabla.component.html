@@ -1,6 +1,11 @@
 <div class="container" *ngIf="datos">
   <p>{{ ruta }}</p>
-  <app-ver-materias [ELEMENT_DATA]="datos"></app-ver-materias>
+  <ng-container *ngIf="ruta == 'Materias'">
+    <app-ver-materias [ELEMENT_DATA]="datos"></app-ver-materias>
+  </ng-container>
+  <ng-container *ngIf="ruta == 'Usuarios'">
+    <app-ver-usuarios [ELEMENT_DATA]="datos"></app-ver-usuarios>
+  </ng-container>
 </div>
 <mat-spinner
   class="spinner"

@@ -3,8 +3,9 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { User } from '../models/user';
-import { Observable } from 'rxjs';
+import { Observable, merge } from 'rxjs';
 import { Materia } from '../models/materia';
+import * as firebase from 'firebase/app';
 
 @Injectable({
   providedIn: 'root',
@@ -71,7 +72,17 @@ export class UserService {
 
   AgregarMateria(materia: Materia) {
     materia.alumnos = 0;
-    this.afs.collection('Materias').add(materia);
+    this.afs
+      .collection('Materias')
+      .add(materia)
+      .then(ref => {
+        this.afs.doc(`Materias/${ref.id}`).set(
+          {
+            uid: ref.id,
+          },
+          { merge: true },
+        );
+      });
   }
 
   getProfesores() {
@@ -84,5 +95,32 @@ export class UserService {
 
   getUsers() {
     return this.afs.collection('Users').valueChanges();
+  }
+
+  inscripcionMateria(inscripcion: any) {
+    this.afs
+      .collection('Inscripciones')
+      .add({
+        alumno: inscripcion.alumno,
+        materia: inscripcion.materia,
+      })
+      .then(ref => {
+        this.afs.doc(`Inscripciones/${ref.id}`).set(
+          {
+            uid: ref.id,
+          },
+          { merge: true },
+        );
+
+        this.afs.doc(`Materias/${inscripcion.materia}`).update({
+          alumnos: firebase.firestore.FieldValue.increment(1),
+        });
+      });
+  }
+
+  getInscripciones(uid: string) {
+    return this.afs
+      .collection('Inscripciones', ref => ref.where('alumno', '==', uid))
+      .valueChanges();
   }
 }

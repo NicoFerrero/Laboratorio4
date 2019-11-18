@@ -13,16 +13,30 @@ export class VerUsuariosComponent implements OnInit, OnChanges {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   displayedColumns: string[] = ['email', 'tipo'];
-  dataSource: MatTableDataSource<any> = new MatTableDataSource();
+  usuariosFiltrados: MatTableDataSource<any> = new MatTableDataSource();
   constructor() {}
 
   ngOnInit() {
-    this.dataSource.data = this.ELEMENT_DATA;
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
+    this.usuariosFiltrados.data = this.ELEMENT_DATA;
+    this.usuariosFiltrados.sort = this.sort;
+    this.usuariosFiltrados.paginator = this.paginator;
+    this.usuariosFiltrados.filterPredicate = (data: any, filter: string) =>
+      data.name
+        .trim()
+        .toLowerCase()
+        .indexOf(filter) !== -1;
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.dataSource.data = changes.ELEMENT_DATA.currentValue;
+    this.usuariosFiltrados.data = changes.ELEMENT_DATA.currentValue;
+  }
+
+  Filtrar(filtro) {
+    // Normalmente es filtro.target.value pero por ser elemento de matrial es filtro.value
+    if (filtro.value === 'All') {
+      this.usuariosFiltrados = this.ELEMENT_DATA;
+    } else {
+      this.usuariosFiltrados = this.ELEMENT_DATA.filter(usuario => usuario.tipo === filtro.value);
+    }
   }
 }

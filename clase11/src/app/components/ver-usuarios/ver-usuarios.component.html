@@ -1,5 +1,16 @@
+<div id="controles">
+  <mat-form-field style="margin-bottom: 20px; display: block; width: 20%;">
+    <mat-label>Tipo de Usuario</mat-label>
+    <mat-select name="tipo" id="tipo" (selectionChange)="Filtrar($event)">
+      <mat-option value="All">--Selecionar--</mat-option>
+      <mat-option value="administrador">Administrador</mat-option>
+      <mat-option value="alumno">Alumno</mat-option>
+      <mat-option value="profesor">Profesor</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
 <div class="mat-elevation-z8">
-  <table mat-table [dataSource]="dataSource" matSort>
+  <table mat-table [dataSource]="usuariosFiltrados" matSort>
     <ng-container matColumnDef="email">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
       <td mat-cell *matCellDef="let element">{{ element.email }}</td>

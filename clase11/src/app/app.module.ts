@@ -29,6 +29,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { VerUsuariosComponent } from './components/ver-usuarios/ver-usuarios.component';
+import { InscripcionMateriaComponent } from './components/inscripcion-materia/inscripcion-materia.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { VerUsuariosComponent } from './components/ver-usuarios/ver-usuarios.com
     VerMateriasComponent,
     ContainerTablaComponent,
     VerUsuariosComponent,
+    InscripcionMateriaComponent,
   ],
   imports: [
     BrowserModule,

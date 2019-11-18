@@ -54,6 +54,17 @@
         >Ver Usuarios</a
       >
     </li>
+    <li [ngStyle]="{ display: !user ? 'none' : 'block' }" *ngIf="tipo == 'alumno'">
+      <a
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="toggleMenu()"
+        style="cursor: pointer;"
+        routerLink="/inscripcion-materia"
+        *ngIf="user"
+        >Inscripcion Materia</a
+      >
+    </li>
     <li [ngStyle]="{ display: !user ? 'none' : 'block' }">
       <app-mostrar-email [email]="user?.email"></app-mostrar-email>
     </li>

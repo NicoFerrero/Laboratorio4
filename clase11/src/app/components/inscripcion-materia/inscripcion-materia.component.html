@@ -1,0 +1,30 @@
+<form [formGroup]="materiaForm" (ngSubmit)="onSubmit()" class="mat-elevation-z8">
+  <mat-form-field>
+    <mat-label>Materias</mat-label>
+    <mat-select
+      name="materia"
+      id="materia"
+      formControlName="materia"
+      (selectionChange)="onSelected($event)"
+    >
+      <mat-option
+        *ngFor="let materia of materias"
+        [value]="materia.uid"
+        [disabled]="materia.alumnos >= materia.cupo"
+      >
+        {{ materia.materia }} - {{ materia.alumnos }} / {{ materia.cupo }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-error *ngIf="!valido">Ya esta inscripto en esa materia</mat-error>
+
+  <button
+    type="submit"
+    [disabled]="materiaForm?.invalid || !valido"
+    mat-flat-button
+    color="primary"
+  >
+    Inscribirme
+  </button>
+</form>

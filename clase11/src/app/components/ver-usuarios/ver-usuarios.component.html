@@ -27,3 +27,6 @@
 
   <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
+
+<button (click)="descargarPDF()" mat-flat-button color="warn">Descargar PDF</button>
+<app-qr [data]="ELEMENT_DATA"></app-qr>

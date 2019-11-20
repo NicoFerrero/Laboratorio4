@@ -129,4 +129,8 @@ export class UserService {
       .collection('Inscripciones', ref => ref.where('alumno', '==', uid))
       .valueChanges();
   }
+
+  getMateriasProfesor(uid: string) {
+    return this.afs.collection('Materias', ref => ref.where('profesor', '==', uid)).valueChanges();
+  }
 }

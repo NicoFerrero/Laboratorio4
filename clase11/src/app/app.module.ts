@@ -32,6 +32,11 @@ import { VerUsuariosComponent } from './components/ver-usuarios/ver-usuarios.com
 import { InscripcionMateriaComponent } from './components/inscripcion-materia/inscripcion-materia.component';
 import { VerInscripcionesComponent } from './components/ver-inscripciones/ver-inscripciones.component';
 import { CupoPipePipe } from './pipes/cupo-pipe.pipe';
+import { VerMateriasProfesorComponent } from './components/ver-materias-profesor/ver-materias-profesor.component';
+import { QrComponent } from './components/qr/qr.component';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { CaptchaComponent } from './components/captcha/captcha.component';
+import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
 
 @NgModule({
   declarations: [
@@ -48,6 +53,9 @@ import { CupoPipePipe } from './pipes/cupo-pipe.pipe';
     InscripcionMateriaComponent,
     VerInscripcionesComponent,
     CupoPipePipe,
+    VerMateriasProfesorComponent,
+    QrComponent,
+    CaptchaComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,6 +75,9 @@ import { CupoPipePipe } from './pipes/cupo-pipe.pipe';
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
+    NgxQRCodeModule,
+    RecaptchaModule,
+    RecaptchaFormsModule,
   ],
   providers: [UserService, AngularFireAuthGuard],
   bootstrap: [AppComponent],

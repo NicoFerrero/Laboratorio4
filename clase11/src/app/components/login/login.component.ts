@@ -10,10 +10,12 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  valid: boolean;
 
   constructor(private userService: UserService, private fb: FormBuilder) {}
 
   ngOnInit() {
+    this.valid = false;
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.maxLength(12), Validators.minLength(6)]],
@@ -24,5 +26,15 @@ export class LoginComponent implements OnInit {
     let user: User = new User('', this.loginForm.value.email, this.loginForm.value.password, '');
     this.userService.login(user);
     this.loginForm.reset(this.loginForm.value);
+  }
+
+  verificar(event) {
+    //console.log(event);
+    if (event !== null) {
+      this.valid = true;
+    } else {
+      //console.log('Ya no es valido');
+      this.valid = false;
+    }
   }
 }

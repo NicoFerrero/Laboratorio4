@@ -76,6 +76,17 @@
         >Ver inscripciones</a
       >
     </li>
+    <li [ngStyle]="{ display: !user ? 'none' : 'block' }" *ngIf="tipo == 'profesor'">
+      <a
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="toggleMenu()"
+        style="cursor: pointer;"
+        routerLink="/materias-a-cargo"
+        *ngIf="user"
+        >Materias a cargo</a
+      >
+    </li>
     <li [ngStyle]="{ display: !user ? 'none' : 'block' }">
       <app-mostrar-email [email]="user?.email"></app-mostrar-email>
     </li>

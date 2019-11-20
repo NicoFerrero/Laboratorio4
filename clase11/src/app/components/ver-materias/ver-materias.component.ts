@@ -3,6 +3,13 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { UserService } from 'src/app/services/user.service';
+import * as jsPDF from 'jspdf';
+import 'jspdf-autotable';
+import { UserOptions } from 'jspdf-autotable';
+
+interface jsPDFWithPlugin extends jsPDF {
+  autoTable: (options: UserOptions) => jsPDF;
+}
 
 @Component({
   selector: 'app-ver-materias',
@@ -46,5 +53,28 @@ export class VerMateriasComponent implements OnInit, OnChanges {
       }
     }
     this.dataSource.data = changes.ELEMENT_DATA.currentValue;
+  }
+
+  getDataPDF(materias: any[]) {
+    const body = [];
+    for (let i = 0; i < materias.length; i++) {
+      body.push([
+        materias[i]['materia'],
+        materias[i]['profesor'],
+        materias[i]['cuatrimestre'],
+        materias[i]['cupo'],
+        materias[i]['alumnos'],
+      ]);
+    }
+    return body;
+  }
+
+  descargarPDF() {
+    const doc = new jsPDF('portrait', 'px', 'a4') as jsPDFWithPlugin;
+    doc.autoTable({
+      head: [['Materia', 'Profesor', 'Cuatrimestre', 'Cupo', 'Alumnos']],
+      body: this.getDataPDF(this.ELEMENT_DATA),
+    });
+    doc.save('Materias');
   }
 }

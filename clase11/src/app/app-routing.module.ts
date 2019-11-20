@@ -66,6 +66,12 @@ const routes: Routes = [
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
+  {
+    path: 'materias-a-cargo',
+    component: ContainerTablaComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+  },
   { path: '**', pathMatch: 'full', redirectTo: '/login' },
 ];
 

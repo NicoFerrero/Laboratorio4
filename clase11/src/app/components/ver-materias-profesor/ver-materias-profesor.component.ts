@@ -2,8 +2,6 @@ import { Component, OnInit, ViewChild, Input, OnChanges, SimpleChanges } from '@
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
-import { UserService } from 'src/app/services/user.service';
-import { Materia } from 'src/app/models/materia';
 import * as jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { UserOptions } from 'jspdf-autotable';
@@ -13,53 +11,37 @@ interface jsPDFWithPlugin extends jsPDF {
 }
 
 @Component({
-  selector: 'app-ver-inscripciones',
-  templateUrl: './ver-inscripciones.component.html',
-  styleUrls: ['./ver-inscripciones.component.css'],
+  selector: 'app-ver-materias-profesor',
+  templateUrl: './ver-materias-profesor.component.html',
+  styleUrls: ['./ver-materias-profesor.component.css'],
 })
-export class VerInscripcionesComponent implements OnInit, OnChanges {
+export class VerMateriasProfesorComponent implements OnInit, OnChanges {
   @Input() ELEMENT_DATA;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  displayedColumns: string[] = ['materia'];
+  displayedColumns: string[] = ['materia', 'cuatrimestre', 'cupo', 'alumnos'];
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
-  materias: Materia[];
-  constructor(private userService: UserService) {}
+  constructor() {}
 
   ngOnInit() {
-    this.userService.getMaterias().subscribe(materias => {
-      this.materias = materias;
-      console.log(this.materias);
-      for (const aux in this.ELEMENT_DATA) {
-        for (const materia in this.materias) {
-          if (this.ELEMENT_DATA[aux].materia === this.materias[materia].uid) {
-            this.ELEMENT_DATA[aux].materia = this.materias[materia].materia;
-            break;
-          }
-        }
-      }
-    });
     this.dataSource.data = this.ELEMENT_DATA;
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    for (const aux in this.ELEMENT_DATA) {
-      for (const materia in this.materias) {
-        if (this.ELEMENT_DATA[aux].uid === this.materias[materia].uid) {
-          this.ELEMENT_DATA[aux].materia = this.materias[materia].materia;
-          break;
-        }
-      }
-    }
     this.dataSource.data = changes.ELEMENT_DATA.currentValue;
   }
 
   getDataPDF(materias: any[]) {
     const body = [];
     for (let i = 0; i < materias.length; i++) {
-      body.push([materias[i]['materia']]);
+      body.push([
+        materias[i]['materia'],
+        materias[i]['cuatrimestre'],
+        materias[i]['cupo'],
+        materias[i]['alumnos'],
+      ]);
     }
     return body;
   }
@@ -67,9 +49,9 @@ export class VerInscripcionesComponent implements OnInit, OnChanges {
   descargarPDF() {
     const doc = new jsPDF('portrait', 'px', 'a4') as jsPDFWithPlugin;
     doc.autoTable({
-      head: [['Materia']],
+      head: [['Materia', 'Cuatrimestre', 'Cupo', 'Alumnos']],
       body: this.getDataPDF(this.ELEMENT_DATA),
     });
-    doc.save('Inscripciones');
+    doc.save('Materias_a_Cargo');
   }
 }

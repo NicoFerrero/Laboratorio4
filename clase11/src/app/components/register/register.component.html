@@ -31,7 +31,13 @@
     </mat-select>
     <mat-error>Campo no valido</mat-error>
   </mat-form-field>
-  <button type="submit" [disabled]="registerForm?.invalid" mat-flat-button color="primary">
+  <app-captcha id="captcha" (verificar)="verificar($event)"></app-captcha>
+  <button
+    type="submit"
+    [disabled]="registerForm?.invalid || !valid"
+    mat-flat-button
+    color="primary"
+  >
     Register
   </button>
 </form>

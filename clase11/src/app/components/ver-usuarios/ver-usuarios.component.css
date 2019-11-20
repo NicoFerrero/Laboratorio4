@@ -5,4 +5,7 @@ th.mat-sort-header-sorted {
   color: black;
 }
 
-
+button {
+  width: 40%;
+  margin-top: 20px;
+}

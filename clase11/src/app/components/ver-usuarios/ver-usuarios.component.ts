@@ -2,6 +2,13 @@ import { Component, OnInit, Input, ViewChild, SimpleChanges, OnChanges } from '@
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import * as jsPDF from 'jspdf';
+import 'jspdf-autotable';
+import { UserOptions } from 'jspdf-autotable';
+
+interface jsPDFWithPlugin extends jsPDF {
+  autoTable: (options: UserOptions) => jsPDF;
+}
 
 @Component({
   selector: 'app-ver-usuarios',
@@ -34,9 +41,28 @@ export class VerUsuariosComponent implements OnInit, OnChanges {
   Filtrar(filtro) {
     // Normalmente es filtro.target.value pero por ser elemento de matrial es filtro.value
     if (filtro.value === 'All') {
-      this.usuariosFiltrados = this.ELEMENT_DATA;
+      this.usuariosFiltrados.data = this.ELEMENT_DATA;
     } else {
-      this.usuariosFiltrados = this.ELEMENT_DATA.filter(usuario => usuario.tipo === filtro.value);
+      this.usuariosFiltrados.data = this.ELEMENT_DATA.filter(
+        usuario => usuario.tipo === filtro.value,
+      );
     }
+  }
+
+  getDataPDF(usuarios: any[]) {
+    const body = [];
+    for (let i = 0; i < usuarios.length; i++) {
+      body.push([usuarios[i]['email'], usuarios[i]['tipo']]);
+    }
+    return body;
+  }
+
+  descargarPDF() {
+    const doc = new jsPDF('portrait', 'px', 'a4') as jsPDFWithPlugin;
+    doc.autoTable({
+      head: [['Email', 'Tipo']],
+      body: this.getDataPDF(this.usuariosFiltrados.data),
+    });
+    doc.save('Usuarios');
   }
 }

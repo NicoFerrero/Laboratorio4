@@ -7,6 +7,7 @@
       id="email"
       placeholder="Email"
       formControlName="email"
+      [disabled]="!valid"
     />
     <mat-error>Campo no valido</mat-error>
   </mat-form-field>
@@ -21,8 +22,9 @@
     />
     <mat-error>Campo no valido</mat-error>
   </mat-form-field>
+  <app-captcha id="captcha" (verificar)="verificar($event)"></app-captcha>
 
-  <button type="submit" [disabled]="loginForm?.invalid" mat-flat-button color="primary">
+  <button type="submit" [disabled]="loginForm?.invalid || !valid" mat-flat-button color="primary">
     Login
   </button>
 </form>

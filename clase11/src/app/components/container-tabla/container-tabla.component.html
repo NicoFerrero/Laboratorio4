@@ -9,6 +9,9 @@
   <ng-container *ngIf="ruta == 'Inscripciones'">
     <app-ver-inscripciones [ELEMENT_DATA]="datos"></app-ver-inscripciones>
   </ng-container>
+  <ng-container *ngIf="ruta == 'Materias a cargo'">
+    <app-ver-materias-profesor [ELEMENT_DATA]="datos"></app-ver-materias-profesor>
+  </ng-container>
 </div>
 <mat-spinner
   class="spinner"

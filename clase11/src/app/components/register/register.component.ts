@@ -10,10 +10,12 @@ import { User } from 'src/app/models/user';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
+  valid: boolean;
 
   constructor(private userService: UserService, private fb: FormBuilder) {}
 
   ngOnInit() {
+    this.valid = false;
     this.registerForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.maxLength(12), Validators.minLength(6)]],
@@ -34,6 +36,16 @@ export class RegisterComponent implements OnInit {
   }
 
   onSelected(e) {
-    console.log(e.value);
+    //console.log(e.value);
+  }
+
+  verificar(event) {
+    //console.log(event);
+    if (event !== null) {
+      this.valid = true;
+    } else {
+      //console.log('Ya no es valido');
+      this.valid = false;
+    }
   }
 }

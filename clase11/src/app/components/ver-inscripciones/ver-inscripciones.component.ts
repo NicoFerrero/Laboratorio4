@@ -9,6 +9,7 @@ import 'jspdf-autotable';
 import { UserOptions } from 'jspdf-autotable';
 
 interface jsPDFWithPlugin extends jsPDF {
+  save(arg0: string);
   autoTable: (options: UserOptions) => jsPDF;
 }
 

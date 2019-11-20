@@ -36,7 +36,7 @@ import { VerMateriasProfesorComponent } from './components/ver-materias-profesor
 import { QrComponent } from './components/qr/qr.component';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { CaptchaComponent } from './components/captcha/captcha.component';
-import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
+import { RecaptchaModule } from 'ng-recaptcha';
 
 @NgModule({
   declarations: [
@@ -77,7 +77,6 @@ import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
     MatPaginatorModule,
     NgxQRCodeModule,
     RecaptchaModule,
-    RecaptchaFormsModule,
   ],
   providers: [UserService, AngularFireAuthGuard],
   bootstrap: [AppComponent],
